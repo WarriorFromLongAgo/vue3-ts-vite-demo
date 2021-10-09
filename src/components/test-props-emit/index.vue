@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import {ref, reactive} from "vue";
+import {ref, reactive, watchEffect, watch} from "vue";
+
 
 const count = ref(0)
 const handleCountAdd = () => {
@@ -24,6 +25,9 @@ const increment = () => {
   originData.count2++
   originData.user2.name = "李四"
 }
+
+watchEffect(() => console.log("watchEffect count = ", count.value))
+watch(count, (newValue, oldValue) => console.log("watch = ", newValue, oldValue))
 
 const props = defineProps({
   parentMsg: {
